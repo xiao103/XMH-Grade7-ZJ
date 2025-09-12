@@ -24,7 +24,8 @@
       --shadow: rgba(0, 0, 0, 0.1);
     }
 
-    html {
+    html, body {
+      height: 100%;
       font-size: 16px;
     }
 
@@ -48,7 +49,10 @@
       padding: 1.875rem;
       border-radius: 0.9375rem;
       box-shadow: 0 0.625rem 1.875rem var(--shadow);
-      margin: 1.25rem auto;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      min-height: 0; /* 允许容器收缩 */
     }
 
     .header {
@@ -56,6 +60,7 @@
       margin-bottom: 1.875rem;
       padding-bottom: 1.25rem;
       border-bottom: 0.125rem solid #eaeaea;
+      flex-shrink: 0;
     }
 
     h1 {
@@ -81,6 +86,9 @@
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
       gap: 1.25rem;
       margin-top: 1.875rem;
+      flex: 1; /* 占据剩余空间 */
+      overflow-y: auto; /* 允许内容滚动 */
+      max-height: 60vh; /* 限制最大高度 */
     }
 
     .project-item {
@@ -90,6 +98,10 @@
       transition: all 0.3s ease;
       border-left: 0.25rem solid var(--primary-color);
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 6rem; /* 设置最小高度 */
     }
 
     .project-item:hover {
@@ -129,6 +141,7 @@
       margin-top: 2.5rem;
       color: var(--light-gray);
       font-size: clamp(0.8rem, 2vw, 0.9rem);
+      flex-shrink: 0;
     }
 
     .logo {
@@ -145,16 +158,20 @@
       
       body {
         padding: 0.625rem;
+        min-height: 100vh;
+        height: auto;
       }
       
       .container {
         padding: 1.25rem;
         margin: 0.625rem;
         border-radius: 0.625rem;
+        min-height: auto;
       }
       
       .project-list {
         grid-template-columns: 1fr;
+        max-height: none; /* 移除高度限制 */
       }
     }
 
@@ -170,6 +187,7 @@
       
       .project-item {
         padding: 0.9375rem;
+        min-height: 5rem;
       }
     }
 
@@ -180,6 +198,35 @@
       
       .project-list {
         grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      }
+    }
+
+    /* 针对非常高的屏幕 */
+    @media (min-height: 1000px) {
+      .project-list {
+        max-height: 70vh;
+      }
+    }
+
+    /* 针对横屏模式 */
+    @media (max-height: 500px) and (orientation: landscape) {
+      .container {
+        padding: 0.8rem;
+      }
+      
+      .header {
+        margin-bottom: 1rem;
+        padding-bottom: 0.8rem;
+      }
+      
+      .project-item {
+        padding: 0.8rem;
+        min-height: 4.5rem;
+      }
+      
+      .project-list {
+        gap: 0.8rem;
+        margin-top: 1rem;
       }
     }
   </style>
@@ -312,6 +359,27 @@
           }
         });
       });
+
+      // 动态调整项目列表的最大高度
+      function adjustMaxHeight() {
+        const projectList = document.querySelector('.project-list');
+        const header = document.querySelector('.header');
+        const footer = document.querySelector('.footer');
+        const container = document.querySelector('.container');
+        
+        if (window.innerHeight > 600) {
+          const availableHeight = window.innerHeight - header.offsetHeight - footer.offsetHeight - 100;
+          projectList.style.maxHeight = availableHeight + 'px';
+        } else {
+          projectList.style.maxHeight = 'none';
+        }
+      }
+
+      // 初始调整
+      adjustMaxHeight();
+      
+      // 窗口大小变化时调整
+      window.addEventListener('resize', adjustMaxHeight);
     });
   </script>
 </body>

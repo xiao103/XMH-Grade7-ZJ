@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>【生本教具】跨学科实践-项目化学习材料包（七年级·全一册）</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -12,88 +12,105 @@
       padding: 0;
     }
 
+    :root {
+      --primary-color: #3498db;
+      --secondary-color: #2c3e50;
+      --text-color: #333;
+      --light-gray: #7f8c8d;
+      --background-light: #f4f7fb;
+      --background-lighter: #e0eafc;
+      --card-bg: #f9f9f9;
+      --card-hover: #f1f9ff;
+      --shadow: rgba(0, 0, 0, 0.1);
+    }
+
+    html {
+      font-size: 16px;
+    }
+
     body {
       font-family: "Helvetica Neue", "Arial", sans-serif;
       line-height: 1.6;
-      background: linear-gradient(135deg, #f4f7fb 0%, #e0eafc 100%);
-      color: #333;
+      background: linear-gradient(135deg, var(--background-light) 0%, var(--background-lighter) 100%);
+      color: var(--text-color);
       min-height: 100vh;
-      padding: 20px;
+      padding: 1.25rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
     }
 
-    。container {
-      max-width: 1000px;
+    .container {
+      max-width: 64rem;
       width: 100%;
       background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      margin: 20px auto;
+      padding: 1.875rem;
+      border-radius: 0.9375rem;
+      box-shadow: 0 0.625rem 1.875rem var(--shadow);
+      margin: 1.25rem auto;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 30px;
-      padding-bottom: 20px;
-      border-bottom: 2px solid #eaeaea;
+      margin-bottom: 1.875rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 0.125rem solid #eaeaea;
     }
 
     h1 {
-      color: #2c3e50;
-      font-size: 2.5rem;
-      margin-bottom: 10px;
+      color: var(--secondary-color);
+      font-size: clamp(1.8rem, 5vw, 2.5rem);
+      margin-bottom: 0.625rem;
     }
 
     h2 {
-      color: #3498db;
-      font-size: 1.8rem;
-      margin-bottom: 15px;
+      color: var(--primary-color);
+      font-size: clamp(1.4rem, 4vw, 1.8rem);
+      margin-bottom: 0.9375rem;
     }
 
     .subtitle {
-      color: #7f8c8d;
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+      color: var(--light-gray);
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      margin-bottom: 1.25rem;
     }
 
     .project-list {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+      gap: 1.25rem;
+      margin-top: 1.875rem;
     }
 
     .project-item {
-      background: #f9f9f9;
-      border-radius: 10px;
-      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 0.625rem;
+      padding: 1.25rem;
       transition: all 0.3s ease;
-      border-left: 4px solid #3498db;
+      border-left: 0.25rem solid var(--primary-color);
+      cursor: pointer;
     }
 
     .project-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      background: #f1f9ff;
+      transform: translateY(-0.3125rem);
+      box-shadow: 0 0.3125rem 0.9375rem var(--shadow);
+      background: var(--card-hover);
     }
 
     .project-link {
       display: flex;
       align-items: center;
       text-decoration: none;
-      color: #2c3e50;
+      color: var(--secondary-color);
       font-weight: 500;
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
     }
 
     .project-link i {
-      margin-right: 10px;
-      color: #3498db;
-      font-size: 1.2rem;
+      margin-right: 0.625rem;
+      color: var(--primary-color);
+      font-size: clamp(1.1rem, 3vw, 1.2rem);
     }
 
     .project-link:hover {
@@ -101,38 +118,39 @@
     }
 
     .project-desc {
-      color: #7f8c8d;
-      font-size: 0.9rem;
-      margin-top: 8px;
-      margin-left: 28px;
+      color: var(--light-gray);
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      margin-top: 0.5rem;
+      margin-left: 1.75rem;
     }
 
     .footer {
       text-align: center;
-      margin-top: 40px;
-      color: #7f8c8d;
-      font-size: 0.9rem;
+      margin-top: 2.5rem;
+      color: var(--light-gray);
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
     }
 
     .logo {
-      font-size: 2.5rem;
-      color: #3498db;
-      margin-bottom: 15px;
+      font-size: clamp(2rem, 6vw, 2.5rem);
+      color: var(--primary-color);
+      margin-bottom: 0.9375rem;
     }
 
     /* 响应式设计 */
     @media (max-width: 768px) {
+      html {
+        font-size: 14px;
+      }
+      
+      body {
+        padding: 0.625rem;
+      }
+      
       .container {
-        padding: 20px;
-        margin: 10px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      h2 {
-        font-size: 1.5rem;
+        padding: 1.25rem;
+        margin: 0.625rem;
+        border-radius: 0.625rem;
       }
       
       .project-list {
@@ -141,24 +159,27 @@
     }
 
     @media (max-width: 480px) {
-      body {
-        padding: 10px;
+      html {
+        font-size: 13px;
       }
       
       .container {
-        padding: 15px;
-      }
-      
-      h1 {
-        font-size: 1.8rem;
+        padding: 0.9375rem;
+        border-radius: 0.5rem;
       }
       
       .project-item {
-        padding: 15px;
+        padding: 0.9375rem;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .container {
+        max-width: 70rem;
       }
       
-      .project-link {
-        font-size: 1rem;
+      .project-list {
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
       }
     }
   </style>
@@ -173,7 +194,6 @@
       <h2>七年级·全一册</h2>
       <p class="subtitle">本项目化学习产品精准对标最新浙教版《科学》教材</p>
       <p class="subtitle">通过驱动性任务取代被动灌输，促成跨学科的深度融合与核心素养的生成。</p>
-     
     </div>
 
     <div class="project-list">
